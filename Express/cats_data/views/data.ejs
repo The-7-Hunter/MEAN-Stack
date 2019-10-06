@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <a href="/cats">
+        <img src="images/<%= cat_info.img %>.jpg" alt="this is cat">
+    </a>
+
+    <p>Name: <%= cat_info.name %></p>
+    <p>Age: <%= cat_info.age %></p>
+    <p>Sleep at: </p>
+    <% for (spot of cat_info.sleep){  %>
+    <ul> <%= spot %> </ul>
+    <%  } %>
+</body>
+
+</html>
