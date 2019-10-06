@@ -24,4 +24,12 @@ app.get('/users', (request, response) => {
         {name : "nawaf", email: "nawaf@site.sa"},
     ];
 response.render("users", {"users": users_array})});
+
+app.get('/cars', (request, response) => {
+    response.render("cars")
+});
+
+app.get('/cats', (request, response) => {
+    response.render("cats")
+});
 app.listen(8000, () => console.log("listening on port 8000"));
