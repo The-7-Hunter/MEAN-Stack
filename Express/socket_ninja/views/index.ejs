@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Test socket</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.dev.js"
+        integrity="sha256-OgiHfllOBEOiWQ2OcBsDncRG2k7QBW9Rs1dB7MH2N2s=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            console.log('ready');
+            
+            var socket = io();
+
+            $('#btn').click(function(){
+                console.log('clicked');
+                
+                socket.emit('post_form', {
+                    info: {
+                        "name": $('#name').val(),
+                        "location": $('#location').val(),
+                        "language": $('#language').val(),
+                        "comments": $('#comments').val(),
+                        "lucky_num": Math.floor(Math.random() * 100),
+                    }
+                });
+            });
+
+            socket.on('show', function(data){
+                console.log(data);
+                
+                $('#output').append("<p>" + JSON.stringify(data.info) + "</p>");
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <div id="output">
+
+    </div>
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" placeholder="Name">
+
+    <label for="location">location</label>
+    <select name="location" id="location">
+        <option value="USA">USA</option>
+        <option value="KSA">KSA</option>
+        <option value="ABC">ABC</option>
+    </select>
+
+    <label for="language">language</label>
+    <select name="language" id="language">
+        <option value="ِArabic">ِArabic</option>
+        <option value="English">English</option>
+        <option value="French">French</option>
+    </select>
+
+    <label for="comments">comments</label>
+    <textarea id="comments" name="comments"></textarea>
+
+    <button id="btn"> Submit Form </button>
+</body>
+
+</html>
