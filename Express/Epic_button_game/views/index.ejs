@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Button Game</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.dev.js"
+        integrity="sha256-OgiHfllOBEOiWQ2OcBsDncRG2k7QBW9Rs1dB7MH2N2s=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var socket = io();
+
+            $('#btn').click(function () {
+                console.log("blue clicked");
+                socket.emit('add');
+            });
+
+            socket.on('show', (data) => {
+                $('#output').html("clicked " + data + " times!");
+            })
+
+            $('#reset').click(function () {
+                console.log("red clicked");
+                socket.emit('reset');
+            });
+        })
+
+
+    </script>
+</head>
+
+<body>
+    <h3>Click the button and see the number updating, use multiple windows
+        and witness the magic ..... !</h3>
+    <p id="output"></p>
+    <button id="btn"> Click here </button>
+    <button id="reset"> Reset </button>
+</body>
+
+</html>
