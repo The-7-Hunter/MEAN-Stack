@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Homepage - Chatroom Demo</title>
+        <link rel="stylesheet" href="/style.css">
+        <link href="https://fonts.googleapis.com/css?family=Inconsolata&display=swap" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.dev.js" integrity="sha256-OgiHfllOBEOiWQ2OcBsDncRG2k7QBW9Rs1dB7MH2N2s=" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <!-- Hello! -->
+        <div class="site-chat">
+            <div class="chat-window">
+                <div id="output"></div>
+                <div id="feedback"></div>
+                    <form action="/show" method="POST">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Name">
+                        <label for="location">location</label>
+                
+                        <select name="location" id="location">
+                            <option value="USA">USA</option>
+                            <option value="KSA">KSA</option>
+                            <option value="ABC">ABC</option>
+                        </select>
+                
+                        <label for="language">language</label>
+                        <select name="language" id="language">
+                            <option value="ِArabic">ِArabic</option>
+                            <option value="English">English</option>
+                            <option value="French">French</option>
+                        </select>
+                
+                        <label for="comments">comments</label>
+                        <textarea id="comments" name="comments"></textarea>
+                
+                        <input type="submit">
+                    </form>
+            </div>
+        </div>
+        <script type="text/javascript" src="/chat_code.js">
+        </script>
+    </body>
+</html>
