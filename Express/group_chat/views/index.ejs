@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Group Chat</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.dev.js"
+        integrity="sha256-OgiHfllOBEOiWQ2OcBsDncRG2k7QBW9Rs1dB7MH2N2s=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(() => {
+            var user = window.prompt("Enter Your name to access chat:");
+            if(!user){
+                location.reload();
+            }
+            var socket = io();
+            $('#send').click(() => {
+                socket.emit('msg', {
+                    user_name: user,
+                    message: $('#message').val(),
+                });
+                $('#message').val('')
+            });// end of event listener for send button
+
+            $('#message').keyup((event) => {
+                if (event.keyCode === 13){
+                    $('#send').click();
+                }
+            });
+
+            socket.on('show', (data) => {
+                $('#output').append("<h3><strong>" + data.user_name + ": </strong>" + data.message + "</h3>");
+            });
+
+        }); // end of jquery block
+    </script>
+</head>
+
+<body>
+    <div id="mario-chat">
+        <h1>NawatsApp</h1>
+        <p>.... this is not WhatsApp</p>
+        <div id="chat-window">
+            <div id="output"></div>
+        </div>
+        <input id="message" type="text" placeholder="Message" />
+        <button id="send">Send</button>
+    </div>
+</body>
+
+</html>
