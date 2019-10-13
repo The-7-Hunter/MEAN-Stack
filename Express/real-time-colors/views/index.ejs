@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Real Time Colors</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.dev.js"
+        integrity="sha256-OgiHfllOBEOiWQ2OcBsDncRG2k7QBW9Rs1dB7MH2N2s=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(() => {
+            var socket = io();
+            $('#red').click(() => {
+                console.log("Red Clicked");
+                // in case user wants red, then we will pass one
+                socket.emit('click', 1);
+            });
+
+            $('#green').click(() => {
+                console.log("Green Clicked");
+                // in case user wants green, then we will pass two
+                socket.emit('click', 2);
+            });
+
+            $('#blue').click(() => {
+                console.log("Blue Clicked");
+                // in case user wants blue, then we will pass three
+                socket.emit('click', 3);
+            });
+
+            socket.on('change', (data) => {
+                console.log(data);
+                // depending on the value passed we will handle the change
+                if (data == 1) {
+                    $('#container').css('background-color', 'red');
+                }
+                else if (data == 2) {
+                    $('#container').css('background-color', 'green');
+                }
+                else if (data == 3) {
+                    $('#container').css('background-color', 'blue');
+                }
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <h1>Click to change color</h1>
+
+    <div id="container">
+        <button id="red">Red</button>
+        <button id="green">Green</button>
+        <button id="blue">Blue</button>
+    </div>
+</body>
+
+</html>
