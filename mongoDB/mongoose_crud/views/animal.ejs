@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>animal</title>
+    <link rel="stylesheet" href="style.css">
+
+    <script>
+        function sure() {
+            if (confirm(" are you sure you want to delete this Animal?") == true) {
+                document.getElementById('delete').click();
+            }
+            else {
+                window.location.href = '/';
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h2>Animal: <%= animal.name %> </h2>
+    <li>type: <%= animal.type %></li>
+    <li>habitat: <%= animal.habitat %></li>
+    <a href="/<%= animal.id %>/edit"> <button> Edit Animal </button> </a>
+    <a onclick="sure()">
+        <button>Delete</button>
+    </a>
+    <form action="/<%= animal.id %>/delete" method="POST">
+        <input hidden id="delete" type="submit" value="Delete Animal">
+    </form>
+    <a href="/"> <button> Back </button> </a>
+
+</body>
+
+</html>

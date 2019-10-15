@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CRUD using mongoose</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Nawaf's zoo is here:</h1>
+    <h2>Feel free to add animals as you wish using the button bellow</h2>
+    <a href="/new_form"><button>Add new animal</button></a>
+    <h3>-----------------------------------------------------------------------</h3>
+    <h2>click on animal to dispay information about it</h2>
+    <h3>-----------------------------------------------------------------------</h3>
+    <%  for (var animal of animals) {  %>
+    <h3> -- <%= animal.name %></h3>
+    <a href="/<%= animal.id %>"> <button> Click here to display </button> </a>
+    <h3>-----------------------------------------------------------------------</h3>
+    <% } %>
+    <br>
+</body>
+
+</html>
