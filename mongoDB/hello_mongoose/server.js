@@ -7,6 +7,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/static"));
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
+app.use(express.json());
 
 mongoose.connect('mongodb://localhost/test', { useNewUrlParser: true });
 

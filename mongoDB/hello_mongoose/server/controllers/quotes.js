@@ -7,7 +7,8 @@ module.exports = {
     },
     find: (req, res) => {
         Quote.find().sort({ _id: -1 })
-            .then(data => res.render("quotes", { quotes: data }))
+            // .then(data => res.render("quotes", { quotes: data }))
+            .then(data => res.json(data))
             .catch(err => res.json(err));
     },
     create: (req, res) => {
