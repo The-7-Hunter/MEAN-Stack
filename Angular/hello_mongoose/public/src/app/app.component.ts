@@ -10,7 +10,6 @@ import { HttpService } from './http.service';
 export class AppComponent implements OnInit{
   title = 'public';
   quotes: any ;
-  quote = "";
   username = "";
   constructor(private _httpSerice: HttpService) {
   
@@ -25,8 +24,7 @@ export class AppComponent implements OnInit{
       console.log("got this data", data);
       this.quotes = data
       console.log(this.quotes[0]);
-      this.username = this.quotes[0].name;
-      // I didn't understand the two lines above
+      this.username = this.quotes[1].name;
     });
   }
 }
