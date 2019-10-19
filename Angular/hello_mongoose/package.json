@@ -10,8 +10,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/jquery": "^3.3.31",
     "ejs": "^2.7.1",
     "express": "^4.17.1",
+    "jquery": "^3.4.1",
     "mongoose": "^5.7.5",
     "nodemon": "^1.19.4"
   }
