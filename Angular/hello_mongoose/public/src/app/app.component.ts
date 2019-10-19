@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpService } from './http.service';
 
 
@@ -7,10 +7,26 @@ import { HttpService } from './http.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'public';
-
+  quotes: any ;
+  quote = "";
+  username = "";
   constructor(private _httpSerice: HttpService) {
+  
+  }
+  ngOnInit(){
+    this.getQuotesFromService();
+  }
 
+  getQuotesFromService(){
+    let obs = this._httpSerice.getQuotes();
+    obs.subscribe(data => {
+      console.log("got this data", data);
+      this.quotes = data
+      console.log(this.quotes[0]);
+      this.username = this.quotes[0].name;
+      // I didn't understand the two lines above
+    });
   }
 }
