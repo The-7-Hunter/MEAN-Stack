@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +13,19 @@ export class HttpService {
   getQuotes() {
     return this._http.get("/quotes");
   };
+
+  addQuote(newQuote){
+    return this._http.post("/quotes", newQuote)
+  }
+
+  editQuote(edit){
+    return this._http.put('/quotes', edit);
+  }
+
+  deleteQuote(del){
+    const param = new HttpParams().set('_id', del._id)
+    return this._http.delete('/quotes', {params: param});
+  }
 }
 
   // getAllPokemons() {

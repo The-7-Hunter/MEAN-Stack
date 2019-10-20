@@ -7,19 +7,23 @@ import { HttpService } from './http.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   title = 'public';
-  quotes: any ;
+  quotes: any;
   username = "";
-  oneQ = "";
+  oneQ;
+  newQuote: any;
+  chosen: any;
   constructor(private _httpSerice: HttpService) {
-  
+
   }
-  ngOnInit(){
+  ngOnInit() {
     this.getQuotesFromService();
+    this.newQuote = { name: "", quote: "" }
+    this.chosen = { name: "", quote: "" }
   }
 
-  getQuotesFromService(){
+  getQuotesFromService() {
     // let obs = this._httpSerice.getQuotes();
     // obs.subscribe(data => {
     //   console.log("got this data", data);
@@ -29,12 +33,12 @@ export class AppComponent implements OnInit{
     // });
   }
 
-  do(val: any): void{
+  do(val: any): void {
     console.log("hey there", `${val}`);
-    
+
   }
 
-  fetch() :void{
+  fetch(): void {
     let obs = this._httpSerice.getQuotes();
     obs.subscribe(data => {
       console.log("got this data", data);
@@ -44,9 +48,37 @@ export class AppComponent implements OnInit{
     });
   }
 
-  displayOne(id :any) :void{
+  displayOne(id: any): void {
     console.log(id._id);
     this.oneQ = id.quote;
-    console.log(this.oneQ);
+  }
+
+  onSubmit() {
+    let obs = this._httpSerice.addQuote(this.newQuote);
+    obs.subscribe(data => {
+    })
+    this.fetch();
+    this.newQuote = { name: "", quote: "" }
+  }
+
+  chosenItem(quote){
+    this.chosen = quote;
+  }
+
+  editOne() {
+    let obs = this._httpSerice.editQuote(this.chosen);
+    obs.subscribe(data => {
+    });
+    this.fetch();
+    this.chosen = { name: "", quote: "" }
+  }
+
+  deleteOne(quote){
+    let obs = this._httpSerice.deleteQuote(quote);
+    obs.subscribe(data => {
+      console.log(data);  
+    });
+    this.fetch();
+    this.chosen = { name: "", quote: "" }
   }
 }
