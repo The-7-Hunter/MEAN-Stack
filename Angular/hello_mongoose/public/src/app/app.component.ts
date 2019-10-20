@@ -11,6 +11,7 @@ export class AppComponent implements OnInit{
   title = 'public';
   quotes: any ;
   username = "";
+  oneQ = "";
   constructor(private _httpSerice: HttpService) {
   
   }
@@ -19,6 +20,21 @@ export class AppComponent implements OnInit{
   }
 
   getQuotesFromService(){
+    // let obs = this._httpSerice.getQuotes();
+    // obs.subscribe(data => {
+    //   console.log("got this data", data);
+    //   this.quotes = data
+    //   console.log(this.quotes[0]);
+    //   this.username = this.quotes[1].name;
+    // });
+  }
+
+  do(val: any): void{
+    console.log("hey there", `${val}`);
+    
+  }
+
+  fetch() :void{
     let obs = this._httpSerice.getQuotes();
     obs.subscribe(data => {
       console.log("got this data", data);
@@ -26,5 +42,11 @@ export class AppComponent implements OnInit{
       console.log(this.quotes[0]);
       this.username = this.quotes[1].name;
     });
+  }
+
+  displayOne(id :any) :void{
+    console.log(id._id);
+    this.oneQ = id.quote;
+    console.log(this.oneQ);
   }
 }
