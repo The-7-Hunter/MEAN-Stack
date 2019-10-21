@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 import {HttpService} from './http.service';
 import {HttpClientModule} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { TestComponent } from './test/test.component';
 
 // import the two services above and add them into your array of providers
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,

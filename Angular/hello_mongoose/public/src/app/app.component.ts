@@ -48,9 +48,9 @@ export class AppComponent implements OnInit {
     });
   }
 
-  displayOne(id: any): void {
-    console.log(id._id);
-    this.oneQ = id.quote;
+  displayOne(obj: any): void {
+    console.log(obj._id);
+    this.oneQ = obj;
   }
 
   onSubmit() {

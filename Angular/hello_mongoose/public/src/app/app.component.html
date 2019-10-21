@@ -304,8 +304,11 @@
   <p *ngFor="let quote of quotes; let id = index">{{quote.name}}
     <button (click)="deleteOne(quote)"> Delete this </button>
     <button (click)="chosenItem(quote)"> Edit this </button>
+    <button (click)="displayOne(quote)"> Display this </button>
   </p>
-  <p *ngIf="oneQ"> {{oneQ}} </p>
+  <p *ngIf="oneQ"> {{oneQ.name}} is saying: {{oneQ.quote}} </p>
+  <app-test *ngIf="oneQ" [showQ] = 'oneQ'> </app-test>
+
 
 
   <h2>add new quote: </h2>
